@@ -1,0 +1,47 @@
+﻿/* ================= Декор: ботанический фон ================= */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Мягкий цветочный паттерн через CSS-градиенты */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(255, 223, 238, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 85% 15%, rgba(216, 241, 230, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 75% 85%, rgba(255, 243, 215, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 20% 75%, rgba(230, 224, 255, 0.4) 0%, transparent 40%);
+  background-size: 100% 100%;
+}
+
+/* Плавающие декоративные элементы (стилизованные листья/цветы) */
+body::after {
+  content: "";
+  position: fixed;
+  top: -10%;
+  right: -5%;
+  width: 300px;
+  height: 300px;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23ffffff20'%3E%3Cpath d='M50 5 C60 20 80 25 85 45 C90 65 75 85 50 95 C25 85 10 65 15 45 C20 25 40 20 50 5 Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.6;
+  animation: float 18s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(15px) rotate(5deg); }
+}
+
+/* Адаптив: убираем декор на мобильных, чтобы не мешал */
+@media (max-width: 768px) {
+  body::after { width: 150px; height: 150px; opacity: 0.3; }
+}
